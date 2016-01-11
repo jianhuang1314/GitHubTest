@@ -1,4 +1,4 @@
-(defclass semaphore ()
+﻿(defclass semaphore ()
 ((count :accessor semaphore-count
 :initform 0)
 (name :reader semaphore-name
@@ -27,3 +27,5 @@
 
 (defmethod decrement ((sem semaphore))
 (setf (semaphore-count sem) (- (semaphore-count sem) 1)))
+
+hello
