@@ -1,0 +1,29 @@
+(defclass semaphore ()
+((count :accessor semaphore-count
+:initform 0)
+(name :reader semaphore-name
+:initarg :name)))
+
+ (setf s (make-instance ’semaphore))
+ (setf s (make-instance ’semaphore :name ’my-resource))
+
+ (defun make-semaphore(name)
+(make-instance ’semaphore :name name))
+
+(setf s (make-semaphore ’my-resource))
+
+ (setf (semaphore-count s) 1)
+%sets s to 1
+ 
+ > (semaphore-count s)
+
+%output = 1
+
+(semaphore-name s)
+%output = MY-RESOURCE
+
+(defmethod increment ((sem semaphore))
+(setf (semaphore-count sem) (+ 1 (semaphore-count sem))))
+
+(defmethod decrement ((sem semaphore))
+(setf (semaphore-count sem) (- (semaphore-count sem) 1)))
